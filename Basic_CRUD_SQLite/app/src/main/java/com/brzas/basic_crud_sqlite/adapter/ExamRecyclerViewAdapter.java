@@ -1,8 +1,11 @@
 package com.brzas.basic_crud_sqlite.adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +19,18 @@ import com.brzas.basic_crud_sqlite.sqlite.DatabaseQueryClass;
 
 import java.util.List;
 
-public class RecyclerExam extends RecyclerView.Adapter<MyViewHolder> {
+public class ExamRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private Context context;
     private DatabaseQueryClass databaseQueryClass;
     private List<Exam> examList;
 
-    public RecyclerExam(Context context, List<Exam> examList){
-        this.context=context;
-        this.examList=examList;
-        databaseQueryClass= new DatabaseQueryClass(context);
+    public ExamRecyclerViewAdapter(Context context, List<Exam> examList) {
+        this.context = context;
+        this.examList = examList;
+        databaseQueryClass = new DatabaseQueryClass(context);
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,15 +40,15 @@ public class RecyclerExam extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final int itemPosition=position;
-        final Exam exam=examList.get(position);
+        final int itemPosition = position;
+        final Exam exam = examList.get(position);
 
-        holder.tittleTextView.setText(exam.getTitle());
         holder.themeTextView.setText(exam.getTheme());
+        holder.tittleTextView.setText(exam.getTitle());
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialogBuilder= new AlertDialog.Builder(context);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 alertDialogBuilder.setMessage("Are you sure you want to delete?");
                 alertDialogBuilder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -53,7 +57,7 @@ public class RecyclerExam extends RecyclerView.Adapter<MyViewHolder> {
                                 deleteExam(itemPosition);
                             }
                         });
-                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -65,21 +69,25 @@ public class RecyclerExam extends RecyclerView.Adapter<MyViewHolder> {
         });
     }
 
-    private void deleteExam(int position){
+    private void deleteExam(int position) {
         Exam exam = examList.get(position);
         long count = databaseQueryClass.deleteExamById(exam.getId());
-        if(count>0){
+        if (count > 0) {
             examList.remove(position);
             notifyDataSetChanged();
         }
     }
-    private Exam addExam(Exam exam){
+
+    public Exam addExam(Exam exam) {
+        int pos = getItemCount();
+        Log.d(TAG, "addExam " + exam);
         examList.add(exam);
-        notifyDataSetChanged();
+        notifyItemChanged(pos - 1);
         return exam;
     }
+
     @Override
     public int getItemCount() {
-        return 0;
+        return examList.size();
     }
 }

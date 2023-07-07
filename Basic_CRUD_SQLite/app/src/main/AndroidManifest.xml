@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.MainExamActivity"
+            android:exported="false"
+            android:label="@string/title_exam"
+            android:theme="@style/Base.Theme.Basic_CRUD_SQLite">
+        </activity>
     </application>
 
 </manifest>
