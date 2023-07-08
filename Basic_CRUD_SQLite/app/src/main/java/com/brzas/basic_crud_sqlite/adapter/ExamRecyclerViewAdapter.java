@@ -17,6 +17,8 @@ import com.brzas.basic_crud_sqlite.R;
 import com.brzas.basic_crud_sqlite.models.Exam;
 import com.brzas.basic_crud_sqlite.sqlite.DatabaseQueryClass;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ExamRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
@@ -24,6 +26,11 @@ public class ExamRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> 
     private Context context;
     private DatabaseQueryClass databaseQueryClass;
     private List<Exam> examList;
+
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
+
 
     public ExamRecyclerViewAdapter(Context context, List<Exam> examList) {
         this.context = context;
@@ -45,6 +52,8 @@ public class ExamRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> 
 
         holder.themeTextView.setText(exam.getTheme());
         holder.tittleTextView.setText(exam.getTitle());
+        holder.durationTextView.setText(sdf.format(new Date(exam.getTimeDuration())));
+        holder.dateTextView.setText(format.format(exam.getExamDate()));
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

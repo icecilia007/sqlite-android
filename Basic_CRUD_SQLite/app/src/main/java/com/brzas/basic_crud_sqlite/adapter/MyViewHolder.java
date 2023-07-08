@@ -12,6 +12,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
     TextView tittleTextView;
     TextView themeTextView;
+    TextView durationTextView;
+    TextView dateTextView;
     ImageView deleteImageView;
 
     public MyViewHolder(View view) {
@@ -19,6 +21,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
         tittleTextView = view.findViewById(R.id.tittle_txt);
         themeTextView = view.findViewById(R.id.theme_txt);
+        durationTextView=view.findViewById(R.id.duration_txt);
+        dateTextView=view.findViewById(R.id.date_txt);
         deleteImageView = view.findViewById(R.id.deleteImageView);
     }
 }

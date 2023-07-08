@@ -8,10 +8,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,12 +36,16 @@ public class MainExamActivity extends AppCompatActivity implements ExamCreateLis
     private RecyclerView recyclerView;
     private ExamRecyclerViewAdapter examRecyclerViewAdapter;
 
+    ImageView action_insert;
+    ImageView action_delete;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_exam);
-        getSupportActionBar().setTitle(R.string.title_exam);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("");
 
         recyclerView = findViewById(R.id.recyclerExam);
         examList.addAll(databaseQueryClass.getAllExam());
@@ -47,6 +54,44 @@ public class MainExamActivity extends AppCompatActivity implements ExamCreateLis
         examRecyclerViewAdapter = new ExamRecyclerViewAdapter(this, examList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(examRecyclerViewAdapter);
+
+        action_insert=findViewById(R.id.action_insert);
+        action_delete=findViewById(R.id.action_delete);
+        action_insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openExamCreateDialog();
+            }
+        });
+        action_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    if (examList.isEmpty()) return ;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainExamActivity.this);
+                    alertDialogBuilder.setMessage("Are you sure you want to delete?");
+                    alertDialogBuilder.setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    boolean isAllDeleted = databaseQueryClass.deleteAllExams();
+                                    if (isAllDeleted) {
+                                        examList.clear();
+                                        examRecyclerViewAdapter.notifyDataSetChanged();
+                                    }
+                                }
+                            });
+
+                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+            }
+        });
     }
 
     @Override

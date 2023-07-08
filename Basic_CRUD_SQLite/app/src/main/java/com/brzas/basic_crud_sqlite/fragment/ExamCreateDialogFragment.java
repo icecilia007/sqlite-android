@@ -1,13 +1,17 @@
 package com.brzas.basic_crud_sqlite.fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.brzas.basic_crud_sqlite.R;
@@ -20,6 +24,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ExamCreateDialogFragment extends DialogFragment {
 
@@ -85,8 +90,8 @@ public class ExamCreateDialogFragment extends DialogFragment {
                 try {
                     Date time = inputFormat.parse(timeDurationEditText.getText().toString());
                     timeDuration = time.getTime();
-
                     Date date = inputFormatDate.parse(examDateEditText.getText().toString());
+                    Log.d(TAG,"String "+examDateEditText.getText().toString()+" date "+date);
                     examDate = date;
                 } catch (ParseException e) {
                     throw new RuntimeException(e);

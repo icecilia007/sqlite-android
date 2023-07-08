@@ -23,6 +23,7 @@ import java.util.Locale;
 public class DatabaseQueryClass {
     private static String TAG = "DatabaseQueryClass";
     private Context context;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public DatabaseQueryClass(Context context) {
         this.context = context;
@@ -38,10 +39,7 @@ public class DatabaseQueryClass {
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_THEME, exam.getTheme());
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_TEACHER, exam.getTeacher());
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_TIMEDURATION, exam.getTimeDuration());
-        //FIXME isso pode dar erro, ficar de olho.
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String examDate = sdf.format(exam.getExamDate());
-        Log.i(TAG, " Exam date Insert " + examDate);
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_EXAMDATE, examDate);
 
         try {
@@ -76,10 +74,10 @@ public class DatabaseQueryClass {
                         String theme = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_THEME));
                         String teacher = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_TEACHER));
                         long timeDuration = cursor.getLong(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_TIMEDURATION));
-                        long examDateMillis = cursor.getLong(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_EXAMDATE));
-                        Date examDate = new Date(examDateMillis);
+                        String examDateMillis = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_EXAMDATE));
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-                        examList.add(new Exam(id, title, theme, teacher, timeDuration, examDate));
+                        examList.add(new Exam(id, title, theme, teacher, timeDuration, formatter.parse(examDateMillis)));
                     } while (cursor.moveToNext());
 
                     return examList;
@@ -180,10 +178,7 @@ public class DatabaseQueryClass {
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_THEME, exam.getTheme());
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_TEACHER, exam.getTeacher());
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_TIMEDURATION, exam.getTimeDuration());
-        //FIXME isso pode dar erro, ficar de olho.
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String examDate = sdf.format(exam.getExamDate());
-        Log.i(TAG, " Exam date UpdateInfo " + examDate);
         contentValues.put(SQLiteAttributes.COLUMN_EXAM_EXAMDATE, examDate);
 
         try {

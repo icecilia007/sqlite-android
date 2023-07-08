@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey_dark">#454444</color>
     <color name="grey">#808080</color>
     <color name="grey_light">#C0C0C0</color>
 
@@ -26,7 +27,7 @@
     <color name="pastel_background_dark">#D8E2DC</color>
     <color name="pastel_background_light">#F0EFEB</color>
 
-    <color name="pastel_background_dialog">#C4DDCE</color>
+    <color name="pastel_background">#88E5E3EC</color>
 
 
 </resources>
