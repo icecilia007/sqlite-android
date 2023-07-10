@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Basic_CRUD_SQLite" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <item name="windowActionBar">false</item>
+        <!-- Customize your dark theme here. -->
+            <!-- Cor primária -->
+            <item name="colorPrimary">@color/pastel_primary_2</item>
+
+            <!-- Cor escura primária -->
+            <item name="colorPrimaryDark">@color/pastel_primary_dark_2</item>
+
+            <!-- Cor de destaque -->
+            <item name="colorAccent">@color/pastel_accent_2</item>
+
+        <item name="android:windowBackground">@color/pastel_background_dark</item>
+
+
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:color">?attr/colorPrimaryDark</item>
+        <item name="android:tint">?attr/colorAccent</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+
+    </style>
+
+    <style name="CustomDialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">false</item>
+    </style>
+</resources>

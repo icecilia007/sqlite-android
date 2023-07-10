@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_exam">Recorded Exams</string>
+    <string name="theme">Theme</string>
+    <string name="delete_image_content_description">button delete click</string>
+    <string name="delete_all_exam">Delete all exam</string>
+    <string name="insert_exam">Insert exam</string>
+    <string name="exam_title">Who discovered Brazil?</string>
+    <string name="exam_theme">History</string>
+    <string name="exam_teacher">Sérgio Boarque</string>
+    <string name="exam_time">01:30</string>
+    <string name="exam_date">13/05/2023</string>
+    <string name="create_button">CREATE</string>
+    <string name="cancel_button">CANCEL</string>
+    <string name="editor_image_content_description">editor content</string>
+</resources>

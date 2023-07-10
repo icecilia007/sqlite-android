@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Basic_CRUD_SQLite" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="windowActionBar">false</item>
+        <!-- Customize your light theme here. -->
+        <!-- Cor primária -->
+        <item name="colorPrimary">@color/pastel_primary_1</item>
+
+        <!-- Cor escura primária -->
+        <item name="colorPrimaryDark">@color/pastel_primary_dark_1</item>
+
+        <!-- Cor de destaque -->
+        <item name="colorAccent">@color/pastel_accent_1</item>
+
+        <item name="android:windowBackground">@color/pastel_background_light</item>
+
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:color">?attr/colorPrimaryDark</item>
+        <item name="android:tint">?attr/colorAccent</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+
+    </style>
+    <style name="Theme.Basic_CRUD_SQLite" parent="Base.Theme.Basic_CRUD_SQLite" />
+
+    <style name="CustomDialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">false</item>
+    </style>
+    <style name="TextAppearance.LightTheme" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>
