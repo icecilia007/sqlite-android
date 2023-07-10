@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.brzas.basic_crud_sqlite.R;
@@ -24,7 +23,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class ExamCreateDialogFragment extends DialogFragment {
 
@@ -53,14 +51,14 @@ public class ExamCreateDialogFragment extends DialogFragment {
 
     public static ExamCreateDialogFragment newInstance(String title, ExamCreateListener listener) {
         examCreateListener = listener;
-        ExamCreateDialogFragment studentCreateDialogFragment = new ExamCreateDialogFragment();
+        ExamCreateDialogFragment examCreateDialogFragment = new ExamCreateDialogFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
-        studentCreateDialogFragment.setArguments(args);
+        examCreateDialogFragment.setArguments(args);
 
-        studentCreateDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
+        examCreateDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
 
-        return studentCreateDialogFragment;
+        return examCreateDialogFragment;
     }
 
     @Override
@@ -105,7 +103,7 @@ public class ExamCreateDialogFragment extends DialogFragment {
 
                 if (id > 0) {
                     exam.setId(id);
-                    examCreateListener.onStudentCreated(exam);
+                    examCreateListener.onExamCreated(exam);
                     getDialog().dismiss();
                 }
             }

@@ -22,6 +22,7 @@ import com.brzas.basic_crud_sqlite.R;
 import com.brzas.basic_crud_sqlite.adapter.ExamRecyclerViewAdapter;
 import com.brzas.basic_crud_sqlite.fragment.ExamCreateDialogFragment;
 import com.brzas.basic_crud_sqlite.helper.ExamCreateListener;
+import com.brzas.basic_crud_sqlite.helper.ExamUpdateListener;
 import com.brzas.basic_crud_sqlite.helper.SQLiteAttributes;
 import com.brzas.basic_crud_sqlite.models.Exam;
 import com.brzas.basic_crud_sqlite.sqlite.DatabaseQueryClass;
@@ -29,7 +30,7 @@ import com.brzas.basic_crud_sqlite.sqlite.DatabaseQueryClass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainExamActivity extends AppCompatActivity implements ExamCreateListener {
+public class MainExamActivity extends AppCompatActivity implements ExamCreateListener{
 
     private DatabaseQueryClass databaseQueryClass = new DatabaseQueryClass(this);
     private List<Exam> examList = new ArrayList<>();
@@ -156,9 +157,10 @@ public class MainExamActivity extends AppCompatActivity implements ExamCreateLis
     }
 
     @Override
-    public void onStudentCreated(Exam exam) {
+    public void onExamCreated(Exam exam) {
         examList.add(exam);
 //        examRecyclerViewAdapter.addExam(exam);
         Log.d(TAG, exam.getTitle());
     }
+
 }

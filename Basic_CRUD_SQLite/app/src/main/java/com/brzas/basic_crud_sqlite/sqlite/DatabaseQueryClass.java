@@ -75,9 +75,8 @@ public class DatabaseQueryClass {
                         String teacher = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_TEACHER));
                         long timeDuration = cursor.getLong(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_TIMEDURATION));
                         String examDateMillis = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_EXAMDATE));
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-                        examList.add(new Exam(id, title, theme, teacher, timeDuration, formatter.parse(examDateMillis)));
+                        examList.add(new Exam(id, title, theme, teacher, timeDuration, sdf.parse(examDateMillis)));
                     } while (cursor.moveToNext());
 
                     return examList;
@@ -113,10 +112,9 @@ public class DatabaseQueryClass {
                 String theme = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_THEME));
                 String teacher = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_TEACHER));
                 long timeDuration = cursor.getLong(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_TIMEDURATION));
-                long examDateMillis = cursor.getLong(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_EXAMDATE));
-                Date examDate = new Date(examDateMillis);
+                String examDateMillis = cursor.getString(cursor.getColumnIndex(SQLiteAttributes.COLUMN_EXAM_EXAMDATE));
 
-                exam = new Exam(_id, title, theme, teacher, timeDuration, examDate);
+                exam = new Exam(_id, title, theme, teacher, timeDuration, sdf.parse(examDateMillis));
             }
         } catch (Exception e) {
             Log.d(TAG, "Exception: " + e.getMessage());

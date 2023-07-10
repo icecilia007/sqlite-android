@@ -14,6 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.brzas.basic_crud_sqlite.R;
+import com.brzas.basic_crud_sqlite.activities.MainExamActivity;
+import com.brzas.basic_crud_sqlite.fragment.ExamUpdateDialogFragment;
+import com.brzas.basic_crud_sqlite.helper.ExamUpdateListener;
+import com.brzas.basic_crud_sqlite.helper.SQLiteAttributes;
 import com.brzas.basic_crud_sqlite.models.Exam;
 import com.brzas.basic_crud_sqlite.sqlite.DatabaseQueryClass;
 
@@ -21,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class ExamRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
+public class ExamRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     private Context context;
     private DatabaseQueryClass databaseQueryClass;
@@ -74,6 +78,20 @@ public class ExamRecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> 
                 });
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
+            }
+        });
+
+        holder.editImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ExamUpdateDialogFragment examUpdateDialogFragment = ExamUpdateDialogFragment.newInstance("Update Exam",exam.getId(),itemPosition, new ExamUpdateListener() {
+                    @Override
+                    public void onExamUpdate(Exam exam, int pos) {
+                        examList.set(pos,exam);
+                        notifyItemChanged(pos);
+                    }
+                });
+                examUpdateDialogFragment.show(((MainExamActivity) context).getSupportFragmentManager(), SQLiteAttributes.UPDATE_EXAM);
             }
         });
     }
