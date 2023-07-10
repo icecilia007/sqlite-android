@@ -11,9 +11,10 @@ In this project, I developed a basic CRUD (Create, Read, Update, Delete) applica
 Please note that in this project, I utilize the 'font' feature introduced in Android 8.0 (API level 26), which allows the use of fonts as resources using XML. However, this feature is only supported on devices with this specification. If you encounter any issues while running the project and want to avoid this problem, you can remove the following line from the code:
 
 `theme.xml
+
 <item name="fontFamily">@font/poppins</item>`
 
-[Android Studio Documentation]([https://www.ge.com/digital/documentation/proficy-plant-applications/version81/t_gsg_configuring_user_in_RabbitMQ.html](https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml?hl=pt-br))
+[Android Studio Documentation]([https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml?hl=pt-br])
     
 
 # :smiley: Appreciations
